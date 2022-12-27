@@ -9,3 +9,4 @@ baselines/ViT/visualizations/
 bert_models/
 data/movies/
 
+*egg-info/
