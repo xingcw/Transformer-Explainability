@@ -8,7 +8,7 @@ reqs = [str(ir.requirement) for ir in install_reqs]
 __version__ = '0.0.1'
 
 setuptools.setup(
-    name='trans-exp',
+    name='trans_exp',
     version=__version__,
     packages=setuptools.find_packages(),
     # Only put dependencies that's not depends on cuda directly.
