@@ -1,8 +1,8 @@
 Pillow>=8.1.1
-einops == 0.3.0
+einops
 h5py
-imageio == 2.9.0
-matplotlib == 3.3.2
+imageio
+matplotlib
 opencv-python
 scikit-image
 scipy
