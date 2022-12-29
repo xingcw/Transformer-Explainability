@@ -3,10 +3,10 @@ einops == 0.3.0
 h5py
 imageio == 2.9.0
 matplotlib == 3.3.2
-opencv_python
-scikit_image
+opencv-python
+scikit-image
 scipy
-sklearn
+scikit-learn
 torch >= 1.7.0
 torchvision >= 0.8.1
 tqdm
