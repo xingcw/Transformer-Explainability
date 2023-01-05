@@ -14,18 +14,18 @@ import numpy as np
 import torch
 import torch.nn as nn
 from transformers import BertTokenizer
-from BERT_explainability.modules.BERT.ExplanationGenerator import Generator
+from trans_exp.BERT_explainability.modules.BERT.ExplanationGenerator import Generator
 
-from BERT_rationale_benchmark.utils import (
+from trans_exp.BERT_rationale_benchmark.utils import (
     Annotation,
     Evidence,
     write_jsonl,
     load_datasets,
     load_documents,
 )
-from BERT_explainability.modules.BERT.BertForSequenceClassification import \
+from trans_exp.BERT_explainability.modules.BERT.BertForSequenceClassification import \
     BertForSequenceClassification as BertForSequenceClassificationTest
-from BERT_explainability.modules.BERT.BERT_cls_lrp import \
+from trans_exp.BERT_explainability.modules.BERT.BERT_cls_lrp import \
     BertForSequenceClassification as BertForClsOrigLrp
 
 from transformers import BertForSequenceClassification

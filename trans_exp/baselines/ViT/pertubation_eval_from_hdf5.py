@@ -6,12 +6,12 @@ import numpy as np
 import argparse
 
 # Import saliency methods and models
-from ViT_explanation_generator import Baselines
-from ViT_new import vit_base_patch16_224
+from trans_exp.baselines.ViT.ViT_explanation_generator import Baselines
+from trans_exp.baselines.ViT.ViT_new import vit_base_patch16_224
 # from models.vgg import vgg19
 import glob
 
-from dataset.expl_hdf5 import ImagenetResults
+from trans_exp.dataset.expl_hdf5 import ImagenetResults
 
 
 def normalize(tensor,

@@ -11,7 +11,7 @@ import torch.nn as nn
 
 from sklearn.metrics import classification_report, accuracy_score
 
-from rationale_benchmark.metrics import (
+from trans_exp.BERT_rationale_benchmark.metrics import (
     PositionScoredDocument,
     Rationale,
     partial_match_score,
@@ -19,8 +19,8 @@ from rationale_benchmark.metrics import (
     score_soft_tokens
 )
 
-from rationale_benchmark.utils import Annotation
-from rationale_benchmark.models.model_utils import PaddedSequence
+from trans_exp.BERT_rationale_benchmark.utils import Annotation
+from trans_exp.BERT_rationale_benchmark.models.model_utils import PaddedSequence
 
 SentenceEvidence = namedtuple('SentenceEvidence', 'kls ann_id query docid index sentence')
 

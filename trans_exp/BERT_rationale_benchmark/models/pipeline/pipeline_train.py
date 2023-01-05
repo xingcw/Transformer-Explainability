@@ -10,23 +10,23 @@ from typing import Set
 import numpy as np
 import torch
 
-from rationale_benchmark.utils import (
+from trans_exp.BERT_rationale_benchmark.utils import (
     write_jsonl,
     load_datasets,
     load_documents,
     intern_documents,
     intern_annotations
 )
-from rationale_benchmark.models.mlp import (
+from trans_exp.BERT_rationale_benchmark.models.mlp import (
     AttentiveClassifier,
     BahadanauAttention,
     RNNEncoder,
     WordEmbedder
 )
-from rationale_benchmark.models.model_utils import extract_embeddings
-from rationale_benchmark.models.pipeline.evidence_identifier import train_evidence_identifier
-from rationale_benchmark.models.pipeline.evidence_classifier import train_evidence_classifier
-from rationale_benchmark.models.pipeline.pipeline_utils import decode
+from trans_exp.BERT_rationale_benchmark.models.model_utils import extract_embeddings
+from trans_exp.BERT_rationale_benchmark.models.pipeline.evidence_identifier import train_evidence_identifier
+from trans_exp.BERT_rationale_benchmark.models.pipeline.evidence_classifier import train_evidence_classifier
+from trans_exp.BERT_rationale_benchmark.models.pipeline.pipeline_utils import decode
 
 logging.basicConfig(level=logging.DEBUG, format='%(relativeCreated)6d %(threadName)s %(message)s')
 # let's make this more or less deterministic (not resistant to restarts)

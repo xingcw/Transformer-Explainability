@@ -8,18 +8,18 @@ from PIL import Image
 import imageio
 import os
 from tqdm import tqdm
-from utils.metrices import *
+from trans_exp.utils.metrices import *
 
 from utils import render
-from utils.saver import Saver
-from utils.iou import IoU
+from trans_exp.utils.saver import Saver
+from trans_exp.utils.iou import IoU
 
-from data.Imagenet import Imagenet_Segmentation
+from trans_exp.data.Imagenet import Imagenet_Segmentation
 
-from ViT_explanation_generator import Baselines, LRP
-from ViT_new import vit_base_patch16_224
-from ViT_LRP import vit_base_patch16_224 as vit_LRP
-from ViT_orig_LRP import vit_base_patch16_224 as vit_orig_LRP
+from trans_exp.baselines.ViT.ViT_explanation_generator import Baselines, LRP
+from trans_exp.baselines.ViT.ViT_new import vit_base_patch16_224
+from trans_exp.baselines.ViT.ViT_LRP import vit_base_patch16_224 as vit_LRP
+from trans_exp.baselines.ViT.ViT_orig_LRP import vit_base_patch16_224 as vit_orig_LRP
 
 from sklearn.metrics import precision_recall_curve
 import matplotlib.pyplot as plt

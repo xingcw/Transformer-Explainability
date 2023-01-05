@@ -5,12 +5,12 @@ import h5py
 import argparse
 
 # Import saliency methods and models
-from misc_functions import *
+from trans_exp.baselines.ViT.misc_functions import *
 
-from ViT_explanation_generator import Baselines, LRP
-from ViT_new import vit_base_patch16_224
-from ViT_LRP import vit_base_patch16_224 as vit_LRP
-from ViT_orig_LRP import vit_base_patch16_224 as vit_orig_LRP
+from trans_exp.baselines.ViT.ViT_explanation_generator import Baselines, LRP
+from trans_exp.baselines.ViT.ViT_new import vit_base_patch16_224
+from trans_exp.baselines.ViT.ViT_LRP import vit_base_patch16_224 as vit_LRP
+from trans_exp.baselines.ViT.ViT_orig_LRP import vit_base_patch16_224 as vit_orig_LRP
 
 from torchvision.datasets import ImageNet
 

@@ -1,11 +1,11 @@
 MODEL_CONFIG = {
     "vit": {
-        "name": "vit-base-patch16-224-in21k",
+        "name": "vit_base_patch16_224_in21k",
         "pretrained_path": "google/vit-base-patch16-224-in21k"
     },
 
     "vit_hybrid": {
-        "name": "vit-hybrid-base-bit-384",
+        "name": "vit_hybrid_base_bit_384",
         "pretrained_path": "google/vit-hybrid-base-bit-384"
     }
 }

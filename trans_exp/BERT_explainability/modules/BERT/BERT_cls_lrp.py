@@ -1,12 +1,12 @@
 from transformers import BertPreTrainedModel
 from transformers.utils import logging
-from BERT_explainability.modules.layers_lrp import *
-from BERT_explainability.modules.BERT.BERT_orig_lrp import BertModel
+from trans_exp.BERT_explainability.modules.layers_lrp import *
+from trans_exp.BERT_explainability.modules.BERT.BERT_orig_lrp import BertModel
 from torch.nn import CrossEntropyLoss, MSELoss
 import torch.nn as nn
 from typing import List, Any
 import torch
-from BERT_rationale_benchmark.models.model_utils import PaddedSequence
+from trans_exp.BERT_rationale_benchmark.models.model_utils import PaddedSequence
 
 
 class BertForSequenceClassification(BertPreTrainedModel):

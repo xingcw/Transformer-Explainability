@@ -5,7 +5,7 @@ from typing import List, Tuple, Any
 
 from transformers import BertModel
 
-from rationale_benchmark.models.model_utils import PaddedSequence
+from trans_exp.BERT_rationale_benchmark.models.model_utils import PaddedSequence
 
 
 class BertTagger(nn.Module):
