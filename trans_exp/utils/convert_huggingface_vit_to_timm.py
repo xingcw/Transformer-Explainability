@@ -224,6 +224,8 @@ def convert_vit_weights(vit_name, state_dict=None):
         timm_logits = timm_model(pixel_values)
         assert timm_logits.shape == outputs.logits.shape
         # assert torch.allclose(timm_logits, outputs.logits, atol=1e-3)
+        
+    return state_dict
 
 
 if __name__ == "__main__":

@@ -10,7 +10,7 @@ Among the features:
 * We provide a colab notebook with all the examples. You can very easily add images and questions of your own!
 
 <p align="center">
-  <img width="400" height="450" src="new_work.jpg">
+  <img width="400" height="450" src="docs/new_work.jpg">
 </p>
 
 ---
@@ -34,7 +34,7 @@ Jan 5 2021: [A Jupyter notebook for DeiT added!](https://github.com/hila-chefer/
 
 
 <p align="center">
-  <img width="300" height="460" src="https://github.com/hila-chefer/Transformer-Explainability/blob/main/DeiT.PNG">
+  <img width="300" height="460" src="docs/DeiT.PNG">
 </p>
 
 
@@ -45,7 +45,7 @@ We introduce a novel method which allows to visualize classifications made by a 
 Our method also allows to visualize explanations per class.
 
 <p align="center">
-  <img width="600" height="200" src="https://github.com/hila-chefer/Transformer-Explainability/blob/main/method-page-001.jpg">
+  <img width="600" height="200" src="docs/method-page-001.jpg">
 </p>
 Method consists of 3 phases:
 
@@ -58,7 +58,7 @@ Method consists of 3 phases:
 Please notice our [Jupyter notebook](https://github.com/hila-chefer/Transformer-Explainability/blob/main/example.ipynb) where you can run the two class specific examples from the paper.
 
 
-![alt text](https://github.com/hila-chefer/Transformer-Explainability/blob/main/example.PNG)
+![alt text](docs/example.PNG)
 
 To add another input image, simply add the image to the [samples folder](https://github.com/hila-chefer/Transformer-Explainability/tree/main/samples), and use the `generate_visualization` function for your selected class of interest (using the `class_index={class_idx}`), not specifying the index will visualize the top class.
 

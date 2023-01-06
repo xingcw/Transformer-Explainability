@@ -12,7 +12,7 @@ def load_weights(ckpt_path, model_name, device):
         device (str): device to load weights.
     """
     
-    state_dict = convert_custom_weights(ckpt_path, device)
+    state_dict = convert_custom_weights(ckpt_path, device=device)
     
     if model_name == "multivit":
         state_dict = multimae_to_vit(state_dict)
@@ -22,18 +22,22 @@ def load_weights(ckpt_path, model_name, device):
     return state_dict
 
 
-def convert_custom_weights(ckpt_path, device="cuda"):
+def convert_custom_weights(ckpt_path, prefix=None, device="cuda"):
     """Convert trained weights to remove custom layer names.
 
     Args:
         ckpt_path (str): path to the checkpoints.
+        prefix (str): the prefix of the weights name to be removed.
         device (str, optional): _description_. Defaults to "cuda".
     """
     model_weights = torch.load(ckpt_path, map_location=device)
     state_dict = {}
+    
+    if not prefix:
+        prefix = "embedding_layer.vit_model."
 
     for k, v in model_weights.items():
-        if "embedding_layer.vit_model." in k:
-            state_dict[k.replace("embedding_layer.vit_model.", "")] = v
+        if prefix in k:
+            state_dict[k.replace(prefix, "")] = v
 
     return state_dict
