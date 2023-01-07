@@ -178,13 +178,13 @@ if __name__ == "__main__":
     
     flightmare_path = Path(os.environ["FLIGHTMARE_PATH"])
     data_dir = flightmare_path / "flightpy/results/students/teacher_PPO_5/12-26-14-24-47"
-    res_dir = flightmare_path / "flightpy/results/students/teacher_PPO_5/multivit_01-04-13-17-37"
+    res_dir = flightmare_path / "flightpy/results/students/teacher_PPO_5/vit_01-03-22-00-06"
     
     # get trained models to be visualized
     weight_dirs = []
-    weight_path = res_dir / "model/multivit_ep00_data_data_024768.pth"   
+    weight_path = res_dir / "model/vit_ep00_data_data_024768.pth"   
     weight_dirs.append(weight_path)
-    weight_path = res_dir / "model/multivit_ep95_data_data_2377728.pth"
+    weight_path = res_dir / "model/vit_ep95_data_data_2377728.pth"
     weight_dirs.append(weight_path)
     
     # initialize ViT pretrained
