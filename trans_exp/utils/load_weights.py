@@ -14,7 +14,7 @@ def load_weights(ckpt_path, model_name, device):
     
     state_dict = convert_custom_weights(ckpt_path, device=device)
     
-    if model_name == "multivit":
+    if model_name == "multivit" or model_name == "multimae":
         state_dict = multimae_to_vit(state_dict)
     elif model_name == "vit":
         state_dict = convert_vit_weights(model_name, state_dict)

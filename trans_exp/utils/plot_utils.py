@@ -18,6 +18,7 @@ from trans_exp.baselines.ViT.ViT_explanation_generator import LRP
 from trans_exp.utils.load_weights import load_weights
 from pipelines.models.student import StudentPolicy
 
+
 # create heatmap from mask on image
 def show_cam_on_image(img, mask):
     """show attention heatmap on top of the raw images.
@@ -69,13 +70,14 @@ def visualize(attr_gen: LRP, images, class_index=None, use_thresholding=False):
     return image_trans_gen, new_trans_gen
 
 
-def make_attention_map_video(data_dir, env_id, model: StudentPolicy, transform, weight_dirs, save_dir, fps=10):
+def make_attention_map_video(data_dir, env_id, model: vit_LRP, model_name, transform, weight_dirs, save_dir, fps=10):
     """Create videos for attention maps visualization.
 
     Args:
         data_dir (str): path to the collected data.
         env_id (int): env id for data dir.
         model (nn.Module): models to vis.
+        model_name (str): vit model name.
         transform (transforms.Compose): torch transformations.
         save_dir (str): path to save video.
         fps (int, optional): video fps. Defaults to 10.
@@ -85,7 +87,8 @@ def make_attention_map_video(data_dir, env_id, model: StudentPolicy, transform, 
     save_dir = save_dir / f"vis/{data_dir.parent.parent.stem}_env_{env_id:03d}"
     os.makedirs(save_dir, exist_ok=True)
     
-    weight_dirs = [None] + weight_dirs   # make a place holder for the pretrained weights
+    # make a place holder for the pretrained weights if needed
+    # weight_dirs = [None] + weight_dirs  
     
     original_img_path = save_dir / f"original_images"
     os.makedirs(original_img_path, exist_ok=True)
@@ -103,7 +106,7 @@ def make_attention_map_video(data_dir, env_id, model: StudentPolicy, transform, 
         if weight_path:
             # load custom trained weights
             # NOTE: no weights for head.weight and head.bias in the custom weights
-            weights = load_weights(weight_path, str(weight_path.stem).split("_")[0], "cuda")
+            weights = load_weights(weight_path, model_name, "cuda")
             # print(weights.keys())
             # print(weights["blocks.0.attn.proj.weight"])
             model.load_state_dict(weights, strict=False)
@@ -134,17 +137,18 @@ def make_attention_map_video(data_dir, env_id, model: StudentPolicy, transform, 
             images = []
             for j in range(start, end):
                 img_path = data_dir / f"{j:06d}.npz"
-                image_np = np.load(img_path)["rgb"].squeeze()
-                image = Image.fromarray(image_np)
-                image = transform(image)
+                image_np = np.load(img_path)["rgb"].squeeze()   # (h, w, 3) "BGR" type
+                # cv2.imshow("original image", image)
+                cv2.imwrite(str(original_img_path / f"{j:03d}.png"), image_np)
+                image_np = cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB)
+                image = Image.fromarray(image_np)               # PIL reads in "RGB" type
+                image = transform(image)                        # ToTensor converts values to [0, 1]
                 images.append(image)
 
             images_cuda = torch.stack(images).cuda()
             images, heatmaps = visualize(attr_gen, images_cuda)
             images_all += images
             heatmaps_all += heatmaps
-            
-            del images_cuda
             
         images_per_model.append(images_all)
         heatmaps_per_model.append(heatmaps_all)
@@ -160,16 +164,16 @@ def make_attention_map_video(data_dir, env_id, model: StudentPolicy, transform, 
         for weight_dir, image, heatmap in zip(weight_dirs, images, heatmaps):
             vis = show_cam_on_image(image, heatmap)
             masked_images.append(vis)
-            # cv2.imshow("original image", image)
-            cv2.imwrite(str(original_img_path / f"{i:03d}.png"), image)
             # cv2.imshow("vis attention", vis)
             ckpt_name = "original_vit" if not weight_dir else weight_dir.stem
             cv2.imwrite(str(save_dir / ckpt_name / f"{i:03d}.png"), vis)
         
-        concat_img = cv2.cvtColor(cv2.hconcat(masked_images), cv2.COLOR_BGR2RGB)
+        concat_img = cv2.hconcat(masked_images)
         cv2.imshow("comparison", concat_img)
         video.write(concat_img)
         cv2.waitKey(int(1000/fps))
+        
+    cv2.destroyWindow("comparison")
             
     video.release()
     
@@ -201,5 +205,5 @@ if __name__ == "__main__":
     normalize,
     ])
     
-    make_attention_map_video(data_dir, 0, model, transform, weight_dirs, res_dir)
+    make_attention_map_video(data_dir, 0, model, "vit", transform, weight_dirs, res_dir)
     
