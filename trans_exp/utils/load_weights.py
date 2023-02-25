@@ -31,6 +31,13 @@ def convert_custom_weights(ckpt_path, prefix=None, device="cuda"):
         device (str, optional): _description_. Defaults to "cuda".
     """
     model_weights = torch.load(ckpt_path, map_location=device)
+    
+    if "state_dict" in model_weights:
+        model_weights = model_weights["state_dict"]
+    else:
+        print(model_weights.keys())
+        print("not found key: state_dict")
+        
     state_dict = {}
     
     if not prefix:
